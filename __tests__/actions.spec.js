@@ -1,204 +1,37 @@
-import { addCustomer, deleteCustomer, changeCustomer } from '../src/actions/CustomerActions';
-import { addNote, deleteNote } from '../src/actions/NotesActions';
+import { addCustomer, deleteCustomer, changeCustomer  } from '../src/actions/CustomerActions';
 
-describe("customers actions", () => {
-  
-  test("adicionar um cliente a lista", () => {
-    
-    const oldState = [];
+describe("action creators", () => {
 
-    const customer = {
-      name: "George",
-      email: "opa@hotmail.com",
-      cellphone: "999999999",
-      city: "Parnaiba",
-      state: "PI"
-    }
-
-    const newState = addCustomer(oldState, customer);
-
-    expect(newState).toEqual([{
-      name: "George",
-      email: "opa@hotmail.com",
-      cellphone: "999999999",
-      city: "Parnaiba",
-      state: "PI"
-    }]);
-
-  });
-
-  test("remover um cliente da lista", () => {
-    const oldState = [{
+  const customer = {
       _id: 10,
       name: "George",
       email: "opa@hotmail.com",
-      cellphone: "999999999",
-      city: "Parnaiba",
-      state: "PI"
-    },{
-      _id: 11,
-      name: "George",
-      email: "opa@hotmail.com",
-      cellphone: "999999999",
-      city: "Parnaiba",
-      state: "PI"
-    }];
-
-    const newState = deleteCustomer(oldState, {
-      _id: 11,
-      name: "George",
-      email: "opa@hotmail.com",
-      cellphone: "999999999",
-      city: "Parnaiba",
-      state: "PI"
-    });
-
-    expect(newState).toEqual([{
-      _id: 10,
-      name: "George",
-      email: "opa@hotmail.com",
-      cellphone: "999999999",
-      city: "Parnaiba",
-      state: "PI"
-    }]);
-    
-  });
-
-  test("mudar dados de um cliente específico", () => {
-
-    const oldState = [{
-      _id: 10,
-      name: "George",
-      email: "opa@hotmail.com",
-      cellphone: "999999999",
-      city: "Parnaiba",
-      state: "PI"
-    },{
-      _id: 11,
-      name: "George",
-      email: "opa@hotmail.com",
-      cellphone: "999999999",
-      city: "Parnaiba",
-      state: "PI"
-    }];
-
-    const newCustomer = {
-      _id: 11,
-      name: "Guilherme",
-      email: "guil-7@hotmail.com",
       cellphone: "999999999",
       city: "Parnaiba",
       state: "PI"
     };
 
-    const newState = changeCustomer(oldState, newCustomer); 
+  test("add customer", () => {
 
-    expect(newState).toEqual([{
-      _id: 10,
-      name: "George",
-      email: "opa@hotmail.com",
-      cellphone: "999999999",
-      city: "Parnaiba",
-      state: "PI"
-    },{
-      _id: 11,
-      name: "Guilherme",
-      email: "guil-7@hotmail.com",
-      cellphone: "999999999",
-      city: "Parnaiba",
-      state: "PI"
-    }]);
+    const action = addCustomer(customer);
+
+    expect(action).toEqual({ type: 'ADD_CUSTOMER', customer });
 
   });
 
-  test("mudar dados de um cliente que não existe", () => {
+  test("delete customer", () => {
 
-    const oldState = [{
-      _id: 10,
-      name: "George",
-      email: "opa@hotmail.com",
-      cellphone: "999999999",
-      city: "Parnaiba",
-      state: "PI"
-    },{
-      _id: 11,
-      name: "George",
-      email: "opa@hotmail.com",
-      cellphone: "999999999",
-      city: "Parnaiba",
-      state: "PI"
-    }];
+    const action = deleteCustomer(customer);
 
-    const newCustomer = {
-      _id: 13,
-      name: "Guilherme",
-      email: "guil-7@hotmail.com",
-      cellphone: "999999999",
-      city: "Parnaiba",
-      state: "PI"
-    };
-
-    const newState = changeCustomer(oldState, newCustomer); 
-
-    expect(newState).toEqual([{
-      _id: 10,
-      name: "George",
-      email: "opa@hotmail.com",
-      cellphone: "999999999",
-      city: "Parnaiba",
-      state: "PI"
-    },{
-      _id: 11,
-      name: "George",
-      email: "opa@hotmail.com",
-      cellphone: "999999999",
-      city: "Parnaiba",
-      state: "PI"
-    }]);
+    expect(action).toEqual({ type: 'DELETE_CUSTOMER', customer });
 
   });
-
-});
-
-describe("notes actions", () => {
   
-  test("adicionar uma nota a lista", () => {
-    
-    const oldState = [];
+  test("change customer", () => {
 
-    const note = {
-      customer: 12,
-      totalValue: 500,
-      items: [{ name: "Folder", unitValue: 0.30, qtd: 100, totalValue: 30 }]
-    }
+    const action = changeCustomer(customer);
 
-    const newState = addNote(oldState, note);
-
-    expect(newState).toEqual([{
-      customer: 12,
-      totalValue: 500,
-      items: [{ name: "Folder", unitValue: 0.30, qtd: 100, totalValue: 30 }]
-    }]);
-
-  });
-
-  test("remover um cliente da lista", () => {
-    
-    const oldState = [{
-      _id: 10,
-      customer: 12,
-      totalValue: 500,
-      items: [{ name: "Folder", unitValue: 0.30, qtd: 100, totalValue: 30 }]
-    }];
-
-    const newState = deleteNote(oldState, {
-      _id: 10,
-      customer: 12,
-      totalValue: 500,
-      items: [{ name: "Folder", unitValue: 0.30, qtd: 100, totalValue: 30 }]
-    });
-
-    expect(newState).toEqual([]);
+    expect(action).toEqual({ type: 'CHANGE_CUSTOMER', customer });
 
   });
 

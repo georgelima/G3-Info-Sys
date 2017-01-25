@@ -7,9 +7,21 @@ import {
   FETCH_CUSTOMERS_ERROR
 } from '../constants/ActionTypes';
 
-import { addCustomer, deleteCustomer, changeCustomer } from '../actions/CustomerActions';
-
 const initialState = [];
+
+export function addCustomer(state, customer) {
+  return state.concat(customer);
+}
+
+export function deleteCustomer(state, customer) {
+  return state.filter(currentCustomer => currentCustomer._id !== customer._id);
+}
+
+export function changeCustomer(state, customer) {
+  return state.map((current, i) => 
+    current._id === customer._id ? customer : current
+  );
+}
 
 export default function customers(state = initialState, action) {
   switch(action.type) {
