@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Table from '../components/Table';
 import ModalCustomer from '../components/ModalCustomer';
 
-import { ADD_CUSTOMER, DELETE_CUSTOMER } from '../constants/ActionTypes'; 
+import { ADD_CUSTOMER, DELETE_CUSTOMER, CHANGE_CUSTOMER } from '../constants/ActionTypes'; 
 
 // Just for test
 function* idGenerator() {
@@ -59,12 +59,12 @@ class Customers extends Component {
   }
 
   saveCustomerChanges(newCustomer) {
-    // this.dispatch({ type:  });
+    this.dispatch({ type: CHANGE_CUSTOMER, customer: newCustomer });
     
-    // this.setState({
-    //   customers: newCustomers,
-    //   showModalCustomer: false
-    // });
+    this.setState({
+      customers: newCustomer,
+      showModalCustomer: false
+    });
   }
 
   saveNewCustomer(newCustomer) {
