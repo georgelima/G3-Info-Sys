@@ -34,10 +34,10 @@ class Table extends Component {
           <td>{ current.cellphone }</td>
           <td>{ current.city }</td>
           <td className="has-text-centered">
-            <button onClick={ () => this.props.onInfoClick(current._id) } className="button is-info"><span className="icon"><i className="fa fa-user"></i></span></button>
+            <button onClick={ () => this.props.onInfoClick(current) } className="button is-info"><span className="icon"><i className="fa fa-user"></i></span></button>
           </td>
           <td className="has-text-centered">
-            <button onClick={ () => this.props.onDeleteClick(current._id) } className="button is-danger"><span className="icon"><i className="fa fa-trash"></i></span></button>
+            <button onClick={ () => this.props.onDeleteClick(current) } className="button is-danger"><span className="icon"><i className="fa fa-trash"></i></span></button>
           </td>
         </tr>
       )

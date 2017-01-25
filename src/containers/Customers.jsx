@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 
+import { connect } from 'react-redux';
+
 import Table from '../components/Table';
 import ModalCustomer from '../components/ModalCustomer';
+
+import { ADD_CUSTOMER, DELETE_CUSTOMER } from '../constants/ActionTypes'; 
 
 // Just for test
 function* idGenerator() {
@@ -16,32 +20,36 @@ const iteratorID = idGenerator();
 
 class Customers extends Component {  
   state = {
-    customers: [],
     statusFetchCustomers: true,
     showModalCustomer: false,
     showModalNewCustomer: false,
     customerModal: {}
   } 
 
-  deleteCustomer(_id) {
-    console.log("Deleting", _id);
+  constructor(props) {
+    super(props);
+    this.dispatch = this.props.dispatch;
+  }
+
+  deleteCustomer(customer) {
+    this.dispatch({ type: DELETE_CUSTOMER, customer: customer });
   } 
 
-  showInfoCustomer(_id) {
-    const customer = this.state.customers.filter((current) => {
-      return current._id === _id;
+  showInfoCustomer(customerDelete) {
+    const customer = this.props.customers.filter((current) => {
+      return current._id === customerDelete._id;
     });
-    
+
     this.setState({
       customerModal: customer[0],
       showModalCustomer: !this.state.showModalCustomer
-    })
+    });
   } 
 
   closeModalNewCustomer() {
     this.setState({
       showModalNewCustomer: false
-    })
+    });
   }
 
   showModalNewCustomer() {
@@ -51,17 +59,23 @@ class Customers extends Component {
   }
 
   saveCustomerChanges(newCustomer) {
-    this.setState({
-      showModalCustomer: false
-    });
+    // this.dispatch({ type:  });
+    
+    // this.setState({
+    //   customers: newCustomers,
+    //   showModalCustomer: false
+    // });
   }
 
   saveNewCustomer(newCustomer) {
     const _id = iteratorID.next();
-    console.log(_id.value);
+
     newCustomer._id = _id.value;
+    console.log(newCustomer);
+
+    this.dispatch({ type: ADD_CUSTOMER, customer: newCustomer });
+
     this.setState({
-      customers: this.state.customers.concat(newCustomer),
       showModalNewCustomer: false   
     });
   }
@@ -73,7 +87,7 @@ class Customers extends Component {
         <Table 
           isLoaded={ this.state.statusFetchCustomers } 
           header={[ 'Nome', 'Email', 'Telefone', 'Cidade', 'Info', 'Remover' ]} 
-          body={ this.state.customers }
+          body={ this.props.customers }
           onDeleteClick={ this.deleteCustomer.bind(this) } 
           onInfoClick={ this.showInfoCustomer.bind(this) }           
         />
@@ -94,4 +108,16 @@ class Customers extends Component {
   }
 }
 
-export default Customers;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    customers: state.customers
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    dispatch
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Customers);
