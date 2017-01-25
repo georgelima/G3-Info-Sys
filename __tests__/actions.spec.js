@@ -9,8 +9,8 @@ describe("customers actions", () => {
 
     const customer = {
       name: "George",
-      email: "georgelima11@hotmail.com",
-      cellphone: "999616081",
+      email: "opa@hotmail.com",
+      cellphone: "999999999",
       city: "Parnaiba",
       state: "PI"
     }
@@ -19,8 +19,8 @@ describe("customers actions", () => {
 
     expect(newState).toEqual([{
       name: "George",
-      email: "georgelima11@hotmail.com",
-      cellphone: "999616081",
+      email: "opa@hotmail.com",
+      cellphone: "999999999",
       city: "Parnaiba",
       state: "PI"
     }]);
@@ -31,15 +31,15 @@ describe("customers actions", () => {
     const oldState = [{
       _id: 10,
       name: "George",
-      email: "georgelima11@hotmail.com",
-      cellphone: "999616081",
+      email: "opa@hotmail.com",
+      cellphone: "999999999",
       city: "Parnaiba",
       state: "PI"
     },{
       _id: 11,
       name: "George",
-      email: "georgelima11@hotmail.com",
-      cellphone: "999616081",
+      email: "opa@hotmail.com",
+      cellphone: "999999999",
       city: "Parnaiba",
       state: "PI"
     }];
@@ -47,8 +47,8 @@ describe("customers actions", () => {
     const newState = deleteCustomer(oldState, {
       _id: 11,
       name: "George",
-      email: "georgelima11@hotmail.com",
-      cellphone: "999616081",
+      email: "opa@hotmail.com",
+      cellphone: "999999999",
       city: "Parnaiba",
       state: "PI"
     });
@@ -56,8 +56,8 @@ describe("customers actions", () => {
     expect(newState).toEqual([{
       _id: 10,
       name: "George",
-      email: "georgelima11@hotmail.com",
-      cellphone: "999616081",
+      email: "opa@hotmail.com",
+      cellphone: "999999999",
       city: "Parnaiba",
       state: "PI"
     }]);
@@ -69,15 +69,15 @@ describe("customers actions", () => {
     const oldState = [{
       _id: 10,
       name: "George",
-      email: "georgelima11@hotmail.com",
-      cellphone: "999616081",
+      email: "opa@hotmail.com",
+      cellphone: "999999999",
       city: "Parnaiba",
       state: "PI"
     },{
       _id: 11,
       name: "George",
-      email: "georgelima11@hotmail.com",
-      cellphone: "999616081",
+      email: "opa@hotmail.com",
+      cellphone: "999999999",
       city: "Parnaiba",
       state: "PI"
     }];
@@ -86,7 +86,7 @@ describe("customers actions", () => {
       _id: 11,
       name: "Guilherme",
       email: "guil-7@hotmail.com",
-      cellphone: "999616081",
+      cellphone: "999999999",
       city: "Parnaiba",
       state: "PI"
     };
@@ -96,15 +96,15 @@ describe("customers actions", () => {
     expect(newState).toEqual([{
       _id: 10,
       name: "George",
-      email: "georgelima11@hotmail.com",
-      cellphone: "999616081",
+      email: "opa@hotmail.com",
+      cellphone: "999999999",
       city: "Parnaiba",
       state: "PI"
     },{
       _id: 11,
       name: "Guilherme",
       email: "guil-7@hotmail.com",
-      cellphone: "999616081",
+      cellphone: "999999999",
       city: "Parnaiba",
       state: "PI"
     }]);
@@ -116,15 +116,15 @@ describe("customers actions", () => {
     const oldState = [{
       _id: 10,
       name: "George",
-      email: "georgelima11@hotmail.com",
-      cellphone: "999616081",
+      email: "opa@hotmail.com",
+      cellphone: "999999999",
       city: "Parnaiba",
       state: "PI"
     },{
       _id: 11,
       name: "George",
-      email: "georgelima11@hotmail.com",
-      cellphone: "999616081",
+      email: "opa@hotmail.com",
+      cellphone: "999999999",
       city: "Parnaiba",
       state: "PI"
     }];
@@ -133,7 +133,7 @@ describe("customers actions", () => {
       _id: 13,
       name: "Guilherme",
       email: "guil-7@hotmail.com",
-      cellphone: "999616081",
+      cellphone: "999999999",
       city: "Parnaiba",
       state: "PI"
     };
@@ -143,15 +143,15 @@ describe("customers actions", () => {
     expect(newState).toEqual([{
       _id: 10,
       name: "George",
-      email: "georgelima11@hotmail.com",
-      cellphone: "999616081",
+      email: "opa@hotmail.com",
+      cellphone: "999999999",
       city: "Parnaiba",
       state: "PI"
     },{
       _id: 11,
       name: "George",
-      email: "georgelima11@hotmail.com",
-      cellphone: "999616081",
+      email: "opa@hotmail.com",
+      cellphone: "999999999",
       city: "Parnaiba",
       state: "PI"
     }]);
