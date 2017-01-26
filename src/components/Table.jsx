@@ -2,21 +2,9 @@ import React, { Component, PropTypes } from 'react';
 
 import LoaderHOC from '../HOC/LoaderHOC';
 
-class Table extends Component {
-  static propTypes = {
-    body: PropTypes.array.isRequired,
-    header: PropTypes.array.isRequired,
-    isLoaded: PropTypes.bool.isRequired,
-    onDeleteClick: PropTypes.func,
-    onInfoClick: PropTypes.func
-  }
-
-  defaultProps = {
-    isLoaded: true
-  }
-
-  fillHeader() {
-    const headers = this.props.header.map((current, i) => {
+const Table = ({ body, header, isLoaded, onDeleteClick, onInfoClick }) => {
+  function fillHeader() {
+    const headers = header.map((current, i) => {
       return (
         <th key={ i }>{ current }</th>        
       )
@@ -25,8 +13,8 @@ class Table extends Component {
     return headers;
   }
 
-  fillBody() {
-    const body = this.props.body.map((current, i) => {
+  function fillBody() {
+    return body.map((current, i) => {
       return (
         <tr key={ current._id }>
           <td>{ current.name }</td>
@@ -34,31 +22,36 @@ class Table extends Component {
           <td>{ current.cellphone }</td>
           <td>{ current.city }</td>
           <td className="has-text-centered">
-            <button onClick={ () => this.props.onInfoClick(current) } className="button is-info"><span className="icon"><i className="fa fa-user"></i></span></button>
+            <button onClick={ () => onInfoClick(current) } className="button is-info"><span className="icon"><i className="fa fa-user"></i></span></button>
           </td>
           <td className="has-text-centered">
-            <button onClick={ () => this.props.onDeleteClick(current) } className="button is-danger"><span className="icon"><i className="fa fa-trash"></i></span></button>
+            <button onClick={ () => onDeleteClick(current) } className="button is-danger"><span className="icon"><i className="fa fa-trash"></i></span></button>
           </td>
         </tr>
       )
     });
-    return body;
   }
 
-  render() {
-    return (
-      <table className="table">
-        <thead>
-          <tr>
-            { this.fillHeader() }
-          </tr>
-        </thead>
-        <tbody>
-          { this.fillBody() }
-        </tbody>
-      </table>
-    )
-  }
+  return (
+    <table className="table">
+      <thead>
+        <tr>
+          { fillHeader() }
+        </tr>
+      </thead>
+      <tbody>
+        { fillBody() }
+      </tbody>
+    </table>
+  )
+} 
+
+Table.propTypes = {
+  body: PropTypes.array.isRequired,
+  header: PropTypes.array.isRequired,
+  isLoaded: PropTypes.bool.isRequired,
+  onDeleteClick: PropTypes.func,
+  onInfoClick: PropTypes.func
 }
 
 export default LoaderHOC(Table);
