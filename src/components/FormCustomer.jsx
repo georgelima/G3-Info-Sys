@@ -2,15 +2,12 @@ import React, { Component, PropTypes } from 'react';
 
 class FormCustomer extends Component {
   static propTypes = {
-    customer: PropTypes.object
+    customer: PropTypes.object,
+    onOk: PropTypes.func
   }
 
   static defaultProps = {
     customer: null
-  }
-
-  componentDidMount() {
-    // console.log(this.props);
   }
   
   handleOk(event) {

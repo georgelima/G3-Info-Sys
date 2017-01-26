@@ -2,35 +2,31 @@ import React, { Component, PropTypes } from 'react';
 
 import FormCustomer from './FormCustomer';
 
-class ModalCustomer extends Component {
-  static propTypes = {
-    isActive: PropTypes.bool.isRequired,
-    onClose: PropTypes.func,
-    onOk: PropTypes.func,
-    customer: PropTypes.object
+const ModalCustomer = ({ isActive, onClose, onOk, customer = {} }) => {
+  const props = {
+    isActive,
+    onClose,
+    onOk,
+    customer
   }
 
-  defaultProps = {
-    customer: {}
-  }
-
-  handleOk(event) {
+  function handleOk(event) {
     event.preventDefault();
-    return this.props.onOk(this.props.customer);
+    return onOk(customer);
   }
   
-  show() {
+  function show() {
     return (
       <div className="modal is-active">
         <div className="modal-background"></div>
         <div className="modal-card">
           <header className="modal-card-head">
             <p className="modal-card-title">Informações: </p>
-            <button onClick={ this.props.onClose } className="delete"></button>
+            <button onClick={ onClose } className="delete"></button>
           </header>
           <section className="modal-card-body">
             
-            <FormCustomer {...this.props } />
+            <FormCustomer {...props } />
             
           </section>
         </div>
@@ -38,11 +34,18 @@ class ModalCustomer extends Component {
     )
   }
   
-  render() {
-    return (
-      this.props.isActive ? this.show() : null
-    )
-  }
+
+  return (
+    isActive ? show() : null
+  )
+
+}
+
+ModalCustomer.propTypes = {
+  isActive: PropTypes.bool.isRequired,
+  onClose: PropTypes.func,
+  onOk: PropTypes.func,
+  customer: PropTypes.object
 }
 
 export default ModalCustomer;
