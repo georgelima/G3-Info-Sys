@@ -1,18 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 
-class Modal extends Component {
-  static propTypes = {
-    closeClick: PropTypes.func.isRequired
-  }
-  
-  show() {
+const Modal = ({ okClick, closeClick, isActive }) => {
+  const show = () => {
     return (
       <div id="modal" className="modal is-active">
         <div className="modal-background"></div>
         <div className="modal-card">
           <header className="modal-card-head">
             <p className="modal-card-title">Reportar Problema</p>
-            <button className="delete" onClick={ () => this.props.closeClick() }></button>
+            <button className="delete" onClick={ () => closeClick() }></button>
           </header>
           <section className="modal-card-body">
             <label className="label">Descrição do Problema: </label>
@@ -21,19 +17,24 @@ class Modal extends Component {
             </p>
           </section>
           <footer className="modal-card-foot">
-            <a className="button is-primary">Enviar</a>
-            <a className="button" onClick={ () => this.props.closeClick() }>Cancelar</a>
+            <a className="button is-primary" onClick={ () => okClick() }>Enviar</a>
+            <a className="button" onClick={ () => closeClick() }>Cancelar</a>
           </footer>
         </div>
       </div>
     )
-  }
-  
-  render() {
-    return (
-      this.props.isActive ? this.show() : null
-    );
-  }
+  };
+
+  return (
+    isActive ? show() : null
+  );
 }
+
+Modal.propTypes = {
+  closeClick: PropTypes.func.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  okClick: PropTypes.func
+}
+
 
 export default Modal;
