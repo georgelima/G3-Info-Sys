@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
 import LoaderHOC from '../HOC/LoaderHOC';
 
@@ -22,10 +22,18 @@ const Table = ({ body, header, isLoaded, onDeleteClick, onInfoClick }) => {
           <td>{ current.cellphone }</td>
           <td>{ current.city }</td>
           <td className="has-text-centered">
-            <button onClick={ () => onInfoClick(current) } className="button is-info"><span className="icon"><i className="fa fa-user"></i></span></button>
+            <button onClick={ () => onInfoClick(current) } className="button is-info">
+              <span className="icon">
+                <i className="fa fa-user"></i>
+              </span>
+            </button>
           </td>
           <td className="has-text-centered">
-            <button onClick={ () => onDeleteClick(current) } className="button is-danger"><span className="icon"><i className="fa fa-trash"></i></span></button>
+            <button onClick={ () => onDeleteClick(current) } className="button is-danger">
+              <span className="icon">
+                <i className="fa fa-trash"></i>
+              </span>
+            </button>
           </td>
         </tr>
       )

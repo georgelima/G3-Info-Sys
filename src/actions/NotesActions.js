@@ -1,7 +1,26 @@
-export function addNote(state, note) {
-  return state.concat(note);
+import {
+  ADD_NOTE, 
+  DELETE_NOTE, 
+  CHANGE_NOTE 
+} from '../constants/ActionTypes';
+
+export function addNote(note) {
+  return {
+    type: ADD_NOTE,
+    note
+  }
 }
 
-export function deleteNote(state, note) {
-  return state.filter(currentNote => currentNote._id !== note._id);
+export function deleteNote(note) {
+  return {
+    type: DELETE_NOTE,
+    note
+  }
+}
+
+export function changeNote(note) {
+  return {
+    type: CHANGE_NOTE,
+    note
+  }
 }

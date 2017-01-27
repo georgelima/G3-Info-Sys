@@ -21,7 +21,7 @@ describe("<Table />", () => {
 
   });
 
-  test("should not render if isActive is false", () => {
+  test("should not render if isLoaded is false", () => {
     const props = {
       body: [],
       header: [],

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
 import FormCustomer from './FormCustomer';
 
@@ -8,11 +8,6 @@ const ModalCustomer = ({ isActive, onClose, onOk, customer = {} }) => {
     onClose,
     onOk,
     customer
-  }
-
-  function handleOk(event) {
-    event.preventDefault();
-    return onOk(customer);
   }
   
   function show() {

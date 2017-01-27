@@ -1,27 +1,31 @@
 import { 
   ADD_NOTE, 
   DELETE_NOTE, 
-  FETCH_NOTES, 
-  FETCH_NOTES_SUCCESS, 
-  FETCH_NOTES_ERROR 
+  CHANGE_NOTE 
 } from '../constants/ActionTypes';
 
-const initialState = [];
-
-export function addNote() {
-
+function addNote(state, note) {
+  return state.concat(note);
 }
 
-export function deleteNote() {
-  
+function deleteNote(state, note) {
+  return state.filter(currentNote => currentNote._id !== note._id);
 }
 
-export default function customers(state = initialState, action) {
+function changeNote(state, note) {
+  return state.map((current, i) => 
+    current._id === note._id ? note : current
+  );
+}
+
+export default function notes(state = [], action) {
   switch(action.type) {
     case ADD_NOTE:
-      return addNote();
+      return addNote(action.note);
     case DELETE_NOTE:
-      return deleteNote();
+      return deleteNote(action.note);
+    case CHANGE_NOTE: 
+      return changeNote(action.note);
     default:
       return state;
   }

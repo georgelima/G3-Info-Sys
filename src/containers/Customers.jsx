@@ -18,7 +18,7 @@ const iteratorID = idGenerator();
 
 // ----
 
-class Customers extends Component {  
+export class Customers extends Component {  
   state = {
     statusFetchCustomers: true,
     showModalCustomer: false,
@@ -35,9 +35,9 @@ class Customers extends Component {
     this.dispatch({ type: DELETE_CUSTOMER, customer: customer });
   } 
 
-  showInfoCustomer(customerDelete) {
+  showInfoCustomer(currentCustomer) {
     const customer = this.props.customers.filter((current) => {
-      return current._id === customerDelete._id;
+      return current._id === currentCustomer._id;
     });
 
     this.setState({
@@ -62,7 +62,6 @@ class Customers extends Component {
     this.dispatch({ type: CHANGE_CUSTOMER, customer: newCustomer });
     
     this.setState({
-      customers: newCustomer,
       showModalCustomer: false
     });
   }
@@ -71,7 +70,6 @@ class Customers extends Component {
     const _id = iteratorID.next();
 
     newCustomer._id = _id.value;
-    console.log(newCustomer);
 
     this.dispatch({ type: ADD_CUSTOMER, customer: newCustomer });
 

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
+import { connect } from 'react-redux';
+
 import Table from '../components/Table';
 
-class Notes extends Component {
+export class Notes extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,4 +26,16 @@ class Notes extends Component {
   }
 }
 
-export default Notes;
+function mapStateToProps(state, ownProps) {
+  return {
+    notes: state.notes
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    dispatch
+  }
+} 
+
+export default connect(mapStateToProps, mapDispatchToProps)(Notes);

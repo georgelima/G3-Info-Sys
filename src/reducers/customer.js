@@ -1,29 +1,24 @@
 import { 
   ADD_CUSTOMER, 
   DELETE_CUSTOMER, 
-  CHANGE_CUSTOMER,
-  FETCH_CUSTOMERS, 
-  FETCH_CUSTOMERS_SUCCESS, 
-  FETCH_CUSTOMERS_ERROR
+  CHANGE_CUSTOMER
 } from '../constants/ActionTypes';
 
-const initialState = [];
-
-export function addCustomer(state, customer) {
+function addCustomer(state, customer) {
   return state.concat(customer);
 }
 
-export function deleteCustomer(state, customer) {
+function deleteCustomer(state, customer) {
   return state.filter(currentCustomer => currentCustomer._id !== customer._id);
 }
 
-export function changeCustomer(state, customer) {
+function changeCustomer(state, customer) {
   return state.map((current, i) => 
     current._id === customer._id ? customer : current
   );
 }
 
-export default function customers(state = initialState, action) {
+export default function customers(state = [], action) {
   switch(action.type) {
     case ADD_CUSTOMER:
       return addCustomer(state, action.customer);
