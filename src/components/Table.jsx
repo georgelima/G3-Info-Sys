@@ -17,10 +17,11 @@ const Table = ({ body, header, isLoaded, onDeleteClick, onInfoClick }) => {
     return body.map((current, i) => {
       return (
         <tr key={ current._id }>
-          <td>{ current.name }</td>
-          <td>{ current.email }</td>
-          <td>{ current.cellphone }</td>
-          <td>{ current.city }</td>
+          { Object.keys(current).map((prop, index) => {
+            if (prop !== '_id') {
+              return (<td key={index}>{ current[prop] }</td>)
+            }
+          }) }
           <td className="has-text-centered">
             <button onClick={ () => onInfoClick(current) } className="button is-info">
               <span className="icon">
