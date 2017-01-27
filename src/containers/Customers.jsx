@@ -84,7 +84,7 @@ export class Customers extends Component {
         <h1 className="title is-3">Clientes Cadastrados</h1>
         <Table 
           isLoaded={ this.state.statusFetchCustomers } 
-          header={[ 'Nome', 'Email', 'Telefone', 'Cidade', 'Info', 'Remover' ]} 
+          header={[ 'Nome', 'Email', 'Telefone', 'Cidade', 'Estado', 'Info', 'Remover' ]} 
           body={ this.props.customers }
           onDeleteClick={ this.deleteCustomer.bind(this) } 
           onInfoClick={ this.showInfoCustomer.bind(this) }           

@@ -8,6 +8,7 @@ import App from './App.jsx';
 import Home from './containers/Home';
 import Customers from './containers/Customers';
 import Notes from './containers/Notes';
+import Note from './containers/Note';
 import NotFound from './containers/NotFound';
 
 import { IndexRoute, Route, Router, browserHistory } from 'react-router';
@@ -17,8 +18,9 @@ render(
     <Router history={ browserHistory }>
       <Route path="/" component={ App }>
         <IndexRoute component={ Home }></IndexRoute>
-        <Route path="customers" component={ Customers }></Route>
-        <Route path="notes" component={ Notes }></Route>
+        <Route path="/customers" component={ Customers }></Route>
+        <Route path="/notes" component={ Notes }></Route>
+        <Route path="/notes/:id" component={ Note }></Route>  
         <Route path="*" component={ NotFound }></Route>  
       </Route>
     </Router>
