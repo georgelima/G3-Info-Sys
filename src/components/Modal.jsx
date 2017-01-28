@@ -1,25 +1,27 @@
 import React, { PropTypes } from 'react';
 
-const Modal = ({ okClick, closeClick, isActive }) => {
+const Modal = ({ okClick, closeClick, isActive, title, children, okText, cancelText }) => {
   const show = () => {
     return (
       <div id="modal" className="modal is-active">
         <div className="modal-background"></div>
         <div className="modal-card">
           <header className="modal-card-head">
-            <p className="modal-card-title">Reportar Problema</p>
+            <p className="modal-card-title">{ title }</p>
             <button className="delete" onClick={ () => closeClick() }></button>
           </header>
+          
           <section className="modal-card-body">
-            <label className="label">Descrição do Problema: </label>
-            <p className="control">
-              <textarea className="textarea" placeholder="..."></textarea>
-            </p>
+
+            { children }
+
           </section>
+          
           <footer className="modal-card-foot">
-            <a className="button is-primary" onClick={ () => okClick() }>Enviar</a>
-            <a className="button" onClick={ () => closeClick() }>Cancelar</a>
+            <a className="button is-primary" onClick={ () => okClick() }>{ okText || "Enviar" }</a>
+            <a className="button" onClick={ () => closeClick() }>{ cancelText || "Cancelar" }</a>
           </footer>
+
         </div>
       </div>
     )
@@ -33,7 +35,10 @@ const Modal = ({ okClick, closeClick, isActive }) => {
 Modal.propTypes = {
   closeClick: PropTypes.func.isRequired,
   isActive: PropTypes.bool.isRequired,
-  okClick: PropTypes.func
+  okClick: PropTypes.func,
+  header: PropTypes.string,
+  okText: PropTypes.string,
+  cancelText: PropTypes.string
 }
 
 

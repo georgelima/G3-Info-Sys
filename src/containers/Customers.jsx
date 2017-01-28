@@ -29,6 +29,7 @@ export class Customers extends Component {
   constructor(props) {
     super(props);
     this.dispatch = this.props.dispatch;
+    // this.dispatch({ type: ADD_CUSTOMER, customer: { _id: iteratorID.next(), name: "George MAriano Morais Lima" } });    
   }
 
   deleteCustomer(customer) {
@@ -87,7 +88,9 @@ export class Customers extends Component {
           header={[ 'Nome', 'Email', 'Telefone', 'Cidade', 'Estado', 'Info', 'Remover' ]} 
           body={ this.props.customers }
           onDeleteClick={ this.deleteCustomer.bind(this) } 
-          onInfoClick={ this.showInfoCustomer.bind(this) }           
+          onInfoClick={ this.showInfoCustomer.bind(this) }
+          hasInfo
+          hasDelete           
         />
         <ModalCustomer 
           customer={ this.state.customerModal } 
@@ -100,7 +103,7 @@ export class Customers extends Component {
           onOk={ this.saveNewCustomer.bind(this) }
           onClose={ this.closeModalNewCustomer.bind(this) } 
         />
-        <button className="button is-info" onClick={ this.showModalNewCustomer.bind(this) }>Cadastrar Novo Cliente</button>
+        <button className="button is-info" onClick={ this.showModalNewCustomer.bind(this) }>Cadastrar Cliente</button>
       </div>
     )
   }

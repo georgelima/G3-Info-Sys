@@ -21,11 +21,11 @@ function changeNote(state, note) {
 export default function notes(state = [], action) {
   switch(action.type) {
     case ADD_NOTE:
-      return addNote(action.note);
+      return addNote(state, action.note);
     case DELETE_NOTE:
-      return deleteNote(action.note);
+      return deleteNote(state, action.note);
     case CHANGE_NOTE: 
-      return changeNote(action.note);
+      return changeNote(state, action.note);
     default:
       return state;
   }

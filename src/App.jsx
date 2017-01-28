@@ -35,10 +35,20 @@ class App extends Component {
             </div>
             <Modal 
               isActive={ this.state.isModalActive } 
-              closeClick={ this.handleClickReport.bind(this) } 
-            />
+              closeClick={ this.handleClickReport.bind(this) }
+              title="Reportar Problema"
+              okText="Enviar"
+              cancelText="Cancelar"
+            >
+              <div>
+                <label className="label">Descrição do Problema: </label>
+                <p className="control">
+                  <textarea className="textarea" placeholder="..."></textarea>
+                </p>
+              </div>
+            </Modal>
           </div>
-          { /* <Footer /> */}
+          { /* <Footer /> */ }
         </div>
       </div>
     )

@@ -20,7 +20,8 @@ render(
         <IndexRoute component={ Home }></IndexRoute>
         <Route path="/customers" component={ Customers }></Route>
         <Route path="/notes" component={ Notes }></Route>
-        <Route path="/notes/:id" component={ Note }></Route>  
+        <Route path="/note" component={ Note }></Route>  
+        <Route path="/note/:id" component={ Note }></Route>  
         <Route path="*" component={ NotFound }></Route>  
       </Route>
     </Router>

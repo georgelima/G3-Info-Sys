@@ -17,10 +17,7 @@ const Menu = () => (
     </p>
     <ul className="menu-list">
       <li>
-        <Link to="notes">Cadastrar Nota</Link>                
-      </li>
-      <li>
-        <Link to="notes">Buscar por Nota</Link>                
+        <Link to="notes">Notas Cadastradas</Link>                
       </li>
     </ul>
   </aside>

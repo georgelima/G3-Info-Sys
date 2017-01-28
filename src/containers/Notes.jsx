@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
-
-import { browserHistory } from 'react-router';
-
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import { deleteNote } from '../actions/NoteActions';
 
 import Table from '../components/Table';
 
 export class Notes extends Component {
   constructor(props) {
     super(props);
+    this.dispatch = this.props.dispatch;
     this.state = {
       statusFetchNotes: true
     }
   }
 
   showNoteInfo(currentNote) {
-    browserHistory.replace(`${location.pathname}/${currentNote._id}`)
+    // browserHistory.replace(`note/${currentNote._id}`)
+    this.props.router.push(`note/${currentNote._id}`);
+  }
+
+  deleteNote(currentNote) {
+    this.dispatch(deleteNote(currentNote));
   }
 
   render() {
@@ -23,11 +28,21 @@ export class Notes extends Component {
       <div className="has-text-centered">
         <h1 className="title is-3">Notas Cadastradas</h1>
         <Table 
-          body={[{ _id: 0, customer: 'George', totalValue: 500 }]}
-          header={['Cliente', 'Valor', 'Info', 'Remover']}
+          body={ this.props.notes }          
+          header={['Valor (R$)', 'Data da Nota', 'Info', 'Remover']}
+          keys={['totalValue', 'createdAt']}
           isLoaded={ this.state.statusFetchNotes }
-          onInfoClick={ this.showNoteInfo.bind(this) }       
-        />  
+          onInfoClick={ this.showNoteInfo.bind(this) }
+          onDeleteClick={ this.deleteNote.bind(this) }
+          hasInfo
+          hasDelete       
+        />
+        <Link to="note" className="button is-info">
+          <span className="icon">
+            <i className="fa fa-sticky-note"></i>
+          </span>
+          <span>Cadastrar Nota</span>
+        </Link>
       </div>
     )
   }
