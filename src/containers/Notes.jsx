@@ -15,7 +15,6 @@ export class Notes extends Component {
   }
 
   showNoteInfo(currentNote) {
-    // browserHistory.replace(`note/${currentNote._id}`)
     this.props.router.push(`note/${currentNote._id}`);
   }
 
