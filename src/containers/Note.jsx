@@ -69,7 +69,7 @@ export class Note extends Component {
   }
 
   addItem() {
-    const itemName = this.refs.item.value;
+    const item = this.refs.item.value;
     const unitValue = this.refs.unitValue.value.replace(',', '.');
     const amount = this.refs.amount.value.replace(',', '.');
     const totalValue = unitValue * amount;
@@ -80,37 +80,26 @@ export class Note extends Component {
       return;
     }
 
-    if (this.isNull(unitValue) || this.isNull(amount) || this.isNull(itemName)) {
+    if (this.isNull(unitValue) || this.isNull(amount) || this.isNull(item)) {
       alert("Todos os campos são obrigatórios!");
       return;
     }
 
-    const item = {
-      _id: _id,
-      item: itemName, 
-      unitValue: unitValue, 
-      amount: amount, 
-      totalValue: totalValue
-    }
-
     this.setState({
-      items: this.state.items.concat(item),
+      items: this.state.items.concat({ _id: _id, item: item, unitValue: unitValue, amount: amount, totalValue: totalValue }),
       isModalActive: false,
       totalValue: this.state.totalValue + totalValue
     });
-
   }
 
   deleteItem(item) {
     this.setState({
-      items: this.state.items.filter(currentItem => currentItem._id !== item._id),
-      totalValue: this.state.totalValue - item.totalValue
+      items: this.state.items.filter(currentItem => currentItem._id !== item._id)
     });
   }
 
   saveNote() {
     const note = {
-      _id: iteratorID.next().value,
       customerId: this.state.customer,
       items: this.state.items,
       totalValue: this.state.totalValue,
@@ -122,32 +111,17 @@ export class Note extends Component {
     browserHistory.replace('/notes');
   }
 
-  showCustomer() {
-    const note = this.props.notes.filter(currentNote => {
-      return this.props.params.id === currentNote._id;
-    });
-
-    console.log(note[0]);
-
-    // const customer = this.props.customers.filter((current) => {
-    //   return current._id === note[0]['idCustomer'];
-    // });
-
-    return null;
-    // return <span>{ 'tese' }</span>;
-  }
-
   render() {
     return (
       <div>
         <h1 className="has-text-centered title is-3">Cadastrar Nota</h1>
-        <h4 className="title is-5" style={{ marginBottom: '0px' }}>Cliente:</h4>
-        { this.props.params.id === undefined ? <Select 
+        <h4 className="title is-5">Cliente:</h4>
+        <Select 
           options={ this.props.customers } 
           onSelect={ this.onSelectCustomer.bind(this) }
           propValue="_id"
           propContent="name" 
-        /> : this.showCustomer() }
+        />
         <h4 className="title is-5">Itens:</h4>
         <Table 
           isLoaded={ true }
@@ -223,8 +197,7 @@ export class Note extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    customers: state.customers,
-    notes: state.notes
+    customers: state.customers
   }
 }
 
