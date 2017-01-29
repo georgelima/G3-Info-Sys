@@ -1,0 +1,1 @@
+export const URL_MONGO = 'mongodb://localhost/g3infosys';
