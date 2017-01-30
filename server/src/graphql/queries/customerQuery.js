@@ -1,3 +1,5 @@
+/* @flow */
+
 import { GraphQLString } from 'graphql';
 import customerType from '../types/customerType';
 
@@ -10,9 +12,9 @@ export default {
       type: GraphQLString
     }
   },
-  resolve: (_, { _id }) => {
-    return new Promise((resolve, reject) => {
-      CustomerModel.findOne({ _id: _id }).exec((err, customer) => {
+  resolve: (_: any, _id: any): Promise<any> => {
+    return new Promise((resolve: Function, reject: Function) => {
+      CustomerModel.findOne({ _id: _id }).exec((err: string, customer: Object) => {
         if (err) reject(err);
         resolve(customer);
       });

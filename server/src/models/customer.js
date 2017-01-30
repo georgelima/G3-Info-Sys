@@ -1,6 +1,10 @@
+/* @flow */
+
 import mongoose from 'mongoose';
 
-const customerSchema = mongoose.Schema({
+mongoose.Promise = global.Promise;
+
+const customerSchema: Object = mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String },
   street: { type: String },
@@ -11,5 +15,5 @@ const customerSchema = mongoose.Schema({
   notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note' }] 
 });
 
-const Customer = mongoose.model('Customer', customerSchema);
+const Customer: Object = mongoose.model('Customer', customerSchema);
 export default Customer;

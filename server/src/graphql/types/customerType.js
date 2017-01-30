@@ -1,3 +1,5 @@
+/* @flow */
+
 import {
   GraphQLObjectType,
   GraphQLNonNull,
@@ -18,5 +20,6 @@ export default new GraphQLObjectType({
     city: { type: GraphQLString },
     state: { type: GraphQLString },
     notes: { type: new GraphQLList(noteType) },
+    createdAt: { type: GraphQLString }
   }
 });

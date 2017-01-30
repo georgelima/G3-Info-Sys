@@ -1,1 +1,3 @@
-export const URL_MONGO = 'mongodb://localhost/g3infosys';
+/* @flow */
+
+export const URL_MONGO: string = 'mongodb://localhost/g3infosys';

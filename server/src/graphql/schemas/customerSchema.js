@@ -1,3 +1,5 @@
+/* @flow */
+
 import { 
   GraphQLNonNull, 
   GraphQLSchema, 
@@ -12,7 +14,7 @@ import customerQuery from '../queries/customerQuery';
 
 import addCustomer from '../mutations/addCustomer';
 
-const schema = new GraphQLSchema({
+const schema: Object = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: 'Query',
     fields: {

@@ -1,10 +1,12 @@
+/* @flow */
+
 import express from 'express';
 import bodyParser from 'body-parser';
 
 import GraphQLHTTP from 'express-graphql';
 import Schema from '../graphql/schemas/customerSchema';
 
-const app = express(); 
+const app: any = express(); 
 
 app.use("/graphql", GraphQLHTTP({
   graphiql: true,

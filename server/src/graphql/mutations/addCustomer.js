@@ -1,3 +1,5 @@
+/* @flow */
+
 import { 
   GraphQLString,
   GraphQLNonNull
@@ -7,7 +9,7 @@ import CustomerModel from '../../models/customer';
 
 import customerType from '../types/customerType';
 
-export default {
+const addCustomerMutation = {
   type: customerType,
   args: {
     name: {
@@ -35,11 +37,13 @@ export default {
       type: GraphQLString
     }
   },
-  resolve: (root, { name, email, cellphone, street, city, state }) => {
-    return new Promise((resolve, reject) => {
+  resolve: (_: any, { name, email, cellphone, street, city, state }:{ name: string, email: string, cellphone: string, street:string, city:string, state: string }): Promise<any> => {
+    return new Promise((resolve: Function, reject: Function) => {
       CustomerModel.create({ name, email, cellphone, street, city, state })
         .then(res => resolve(res))
         .catch(err => reject(err));
     });
   }
 }
+
+export default addCustomerMutation;
