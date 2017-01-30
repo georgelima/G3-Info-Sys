@@ -1,14 +1,15 @@
-import mongoose, { Schema, Model } from 'mongoose';
+import mongoose from 'mongoose';
 
-const customerSchema = new Schema({
+const customerSchema = mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String },
   street: { type: String },
   number: { type: String },
   city: { type: String },
   state: { type: String },
-  notes: [{ type: Schema.Types.ObjectId, ref: 'Note' }] 
+  createdAt: { type: Date, default: Date.now },
+  notes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Note' }] 
 });
 
-export const Customer = Model('Customer', customerSchema);
+const Customer = mongoose.model('Customer', customerSchema);
 export default Customer;

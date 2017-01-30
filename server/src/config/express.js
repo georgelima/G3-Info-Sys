@@ -1,14 +1,17 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-// import { graphql } from 'graphql';
-// import { introspectionQuery } from 'graphql/utilities';
-// import graphqlHTTP from 'express-graphql';
+import GraphQLHTTP from 'express-graphql';
+import Schema from '../graphql/schemas/customerSchema';
 
 const app = express(); 
 
-app.set('PORT', 3001);
+app.use("/graphql", GraphQLHTTP({
+  graphiql: true,
+  pretty: true,
+  schema: Schema
+}));
 
-app.get("/", (req, res) => res.send("Running"));
+app.set('PORT', 3001);
 
 export default app;
