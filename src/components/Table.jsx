@@ -19,9 +19,10 @@ const Table = ({ body, header, isLoaded, onDeleteClick, onInfoClick, hasInfo, ha
         <tr key={ current._id || i }>
           { !keys ?
           Object.keys(current).map((prop, index) => {
-            if (prop !== '_id') {
-              return (<td key={ index }>{ current[prop] }</td>)
+            if (prop === '_id') {
+              return null;
             }
+            return (<td key={ index }>{ current[prop] }</td>)
           }) : keys.map((key, i) => <td key={ i }>{ current[key] }</td>) 
            }
           { hasInfo ? 

@@ -1,0 +1,38 @@
+schema {
+  query: Query
+  mutation: RootMutationType
+}
+
+type Customer {
+  _id: ID!
+  name: String
+  email: String
+  street: String
+  city: String
+  state: String
+  notes: [Note]
+  createdAt: String
+}
+
+type Item {
+  _id: ID!
+  item: String
+  unitValue: Float
+  amount: Float
+}
+
+type Note {
+  _id: ID!
+  idCustomer: ID
+  totalValue: Float
+  items: [Item]
+}
+
+type Query {
+  customers: [Customer]
+  customer(_id: String): Customer
+}
+
+type RootMutationType {
+  addCustomer(name: String!, email: String!, cellphone: String, street: String, city: String, state: String): Customer
+}

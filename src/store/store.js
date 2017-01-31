@@ -4,11 +4,14 @@ import ReduxThunk from 'redux-thunk';
 import reducer from '../reducers/index';
 
 const logger = store => next => action => {
-  console.log(action);
-  next(action);
+  if (typeof action === 'function') {
+    next(action);
+  } else {
+    console.log(action);
+    next(action);
+  }
 };
 
-const store = createStore(reducer, applyMiddleware(logger, ReduxThunk));
-                  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),  applyMiddleware(logger, ReduxThunk));
 
 export default store;

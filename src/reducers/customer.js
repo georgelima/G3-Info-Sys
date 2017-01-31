@@ -1,8 +1,13 @@
 import { 
   ADD_CUSTOMER, 
   DELETE_CUSTOMER, 
-  CHANGE_CUSTOMER
+  CHANGE_CUSTOMER,
+  FETCH_CUSTOMERS_SUCCESS
 } from '../constants/ActionTypes';
+
+function receiveCustomers(state, customers) {
+  return customers;
+}
 
 function addCustomer(state, customer) {
   return state.concat(customer);
@@ -20,6 +25,8 @@ function changeCustomer(state, customer) {
 
 export default function customers(state = [], action) {
   switch(action.type) {
+    case FETCH_CUSTOMERS_SUCCESS:
+      return receiveCustomers(state, action.customers);
     case ADD_CUSTOMER:
       return addCustomer(state, action.customer);
     case DELETE_CUSTOMER:

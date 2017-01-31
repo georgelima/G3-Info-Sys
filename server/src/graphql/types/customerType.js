@@ -16,6 +16,7 @@ export default new GraphQLObjectType({
     _id: { type: new GraphQLNonNull(GraphQLID) },
     name: { type: GraphQLString },
     email: { type: GraphQLString },
+    cellphone: { type: GraphQLString },
     street: { type: GraphQLString },
     city: { type: GraphQLString },
     state: { type: GraphQLString },
