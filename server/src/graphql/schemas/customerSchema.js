@@ -9,10 +9,13 @@ import {
   GraphQLFloat
  } from 'graphql';
 
+// queries
 import customersQuery from '../queries/customersQuery';
 import customerQuery from '../queries/customerQuery';
 
+// mutations
 import addCustomer from '../mutations/addCustomer';
+import removeCustomer from '../mutations/removeCustomer';
 
 const schema: Object = new GraphQLSchema({
   query: new GraphQLObjectType({
@@ -25,7 +28,8 @@ const schema: Object = new GraphQLSchema({
   mutation: new GraphQLObjectType({
     name: 'RootMutationType',
     fields: {
-      addCustomer: addCustomer 
+      addCustomer,
+      removeCustomer
     }
   })
 });

@@ -7,6 +7,7 @@ type Customer {
   _id: ID!
   name: String
   email: String
+  cellphone: String
   street: String
   city: String
   state: String
@@ -35,4 +36,5 @@ type Query {
 
 type RootMutationType {
   addCustomer(name: String!, email: String!, cellphone: String, street: String, city: String, state: String): Customer
+  removeCustomer(_id: ID): Customer
 }
